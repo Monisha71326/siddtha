@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login / Enroll | K-Med Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0b1f5c;--gold:#c28a1d;--cream:#fff9ef;--cream2:#fdf1dc;--peach:#fdebd0;--muted:#4f5a80;--line:rgba(11,31,92,.12);--gold-grad:linear-gradient(135deg,#b97f12,#e8b449 50%,#c28a1d);--navy-grad:linear-gradient(135deg,#0a1b52,#16327f);--head:'Barlow Semi Condensed',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html{height:100%}
+body{height:100%;display:flex;flex-direction:column;font-family:'Inter',sans-serif;color:var(--navy);background:radial-gradient(circle at 15% 25%,#fff 0,var(--cream) 45%,var(--cream2) 100%);overflow:hidden;line-height:1.5}
+a{text-decoration:none;color:inherit}
+h1,h2,h3{font-family:var(--head);line-height:1.1}
+
+/* NAV */
+.nav{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;padding:8px 4%;background:#fff;box-shadow:0 4px 24px rgba(11,31,92,.07);position:relative;z-index:10}
+.nav img{height:clamp(42px,7vh,60px);width:auto;display:block}
+.back{display:inline-flex;align-items:center;gap:10px;padding:9px 22px;border-radius:12px;border:1.5px solid var(--navy);font-weight:600;font-size:.92rem;transition:.3s}
+.back:hover{background:var(--navy-grad);color:#fff;transform:translateX(-5px)}
+
+/* MAIN = remaining screen height, no page scroll */
+main{flex:1 1 0;min-height:0;position:relative;display:grid;grid-template-columns:minmax(420px,570px) 1fr;align-items:center;overflow:hidden}
+
+/* PHOTO */
+.photo{position:absolute;right:0;top:0;bottom:0;width:58%;z-index:0}
+.photo img{width:100%;height:100%;object-fit:cover;object-position:left center;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 7%);mask-image:linear-gradient(to right,transparent 0,#000 7%)}
+/* real stats panel : covers the card baked inside hero.jpg */
+.stats{position:absolute;left:1.5%;bottom:2%;width:43%;height:21.5%;min-height:92px;z-index:2;display:flex;align-items:center;justify-content:space-around;background:#fffaf0;border-radius:18px;box-shadow:0 14px 34px rgba(11,31,92,.14);padding:0 10px}
+.stats div{text-align:center;line-height:1.1}
+.stats b{display:block;font-family:var(--head);font-size:clamp(1.3rem,3.6vh,2rem);font-weight:700;color:var(--navy)}
+.stats small{display:block;font-size:clamp(.68rem,1.8vh,.85rem);color:var(--muted);margin-top:2px}
+.stats i{width:1px;height:48%;background:rgba(11,31,92,.2)}
+
+/* CARD */
+.card-wrap{position:relative;z-index:3;padding:0 3% 0 5%;animation:rise 1s cubic-bezier(.2,.7,.2,1)}
+@keyframes rise{from{opacity:0;transform:translateY(50px)}}
+.eyebrow{display:flex;align-items:center;gap:14px;font-weight:600;font-size:.76rem;letter-spacing:.2em;margin-bottom:10px}
+.eyebrow span{width:70px;height:2px;background:linear-gradient(90deg,var(--gold),transparent)}
+.card{background:#fff;border-radius:22px;padding:clamp(18px,3vh,32px) 32px clamp(16px,2.6vh,28px);box-shadow:0 30px 70px rgba(11,31,92,.18);border:1px solid var(--line)}
+.title{font-size:clamp(1.8rem,4.6vh,2.3rem);font-weight:800;text-transform:uppercase;margin-bottom:4px}
+.title em{font-style:normal;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--muted);margin-bottom:clamp(12px,2vh,18px);font-size:.9rem}
+
+.tabs{position:relative;display:grid;grid-template-columns:1fr 1fr;background:var(--cream);border-radius:14px;padding:5px;margin-bottom:clamp(14px,2.6vh,22px)}
+.tabs button{position:relative;z-index:2;border:0;background:none;color:var(--muted);font-family:inherit;font-weight:600;font-size:.95rem;padding:10px;cursor:pointer;transition:.3s}
+.tabs button.on{color:#fff}
+.slider{position:absolute;top:5px;left:5px;width:calc(50% - 5px);height:calc(100% - 10px);border-radius:10px;background:var(--navy-grad);transition:.45s cubic-bezier(.6,.1,.2,1);box-shadow:0 8px 20px rgba(11,31,92,.3)}
+.tabs.reg .slider{transform:translateX(100%)}
+
+form{display:none;animation:in .6s}
+form.show{display:block}
+@keyframes in{from{opacity:0;transform:translateX(36px)}}
+.grid2{display:grid;grid-template-columns:1fr 1fr;column-gap:16px}
+.field{position:relative;margin-bottom:clamp(12px,2.2vh,18px)}
+.field.full{grid-column:1/-1}
+.field input,.field select{width:100%;padding:13px 16px;background:var(--cream);border:1.5px solid transparent;border-radius:12px;color:var(--navy);font-family:inherit;font-size:.95rem;outline:0;transition:.3s}
+.field label{position:absolute;left:16px;top:13px;color:var(--muted);font-size:.95rem;pointer-events:none;transition:.25s}
+.field input:focus,.field select:focus{border-color:var(--gold);background:#fff;box-shadow:0 0 0 4px rgba(227,171,60,.2)}
+.field input:focus+label,.field input:not(:placeholder-shown)+label,.field select+label{top:-9px;left:12px;font-size:.74rem;color:var(--gold);background:#fff;padding:0 8px;font-weight:600}
+.row{display:flex;justify-content:space-between;font-size:.86rem;color:var(--muted);margin-bottom:clamp(12px,2.2vh,18px)}
+.row label{display:flex;align-items:center;gap:6px}
+.row a{color:var(--gold);font-weight:600}
+.btn{width:100%;padding:14px;border:0;border-radius:12px;background:var(--navy-grad);color:#fff;font-weight:700;font-size:1rem;font-family:inherit;cursor:pointer;transition:.3s;box-shadow:0 12px 28px rgba(11,31,92,.32);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:12px}
+.btn::before{content:"";position:absolute;top:0;left:-80%;width:45%;height:100%;background:rgba(255,255,255,.28);transform:skewX(-25deg);animation:shine 3.2s infinite}
+@keyframes shine{0%{left:-80%}40%,100%{left:150%}}
+.btn:hover{transform:translateY(-3px);box-shadow:0 18px 36px rgba(11,31,92,.42)}
+.msg{display:none;margin-top:12px;text-align:center;color:#14804f;font-weight:600;font-size:.92rem}
+.msg.show{display:block;animation:in .5s}
+.switch{text-align:center;margin-top:clamp(10px,1.8vh,16px);color:var(--muted);font-size:.9rem}
+.switch a{color:var(--gold);font-weight:600;cursor:pointer}
+.pill{display:flex;gap:24px;margin-top:clamp(10px,1.8vh,18px);padding:0 6px;font-size:.82rem;font-weight:600}
+.pill span{display:flex;align-items:center;gap:8px}
+.pill i{width:20px;height:20px;border-radius:50%;background:var(--peach);color:#d58a13;display:grid;place-items:center;font-style:normal;font-size:.68rem}
+
+/* short screens */
+@media(max-height:660px){.pill{display:none}.field input,.field select{padding:11px 14px}.field label{top:11px}.btn{padding:12px}}
+@media(max-height:560px){.lead,.eyebrow{display:none}}
+
+/* tablet / mobile : stacked, normal scroll */
+@media(max-width:960px){
+  body{height:auto;min-height:100%;overflow:auto}
+  main{display:block;overflow:visible}
+  .photo{display:none}
+  .card-wrap{padding:24px 5% 30px}
+  .pill{display:flex;flex-wrap:wrap;gap:12px}
+}
+@media(max-width:520px){.card{padding:22px 20px}.grid2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <a href="index.html"><img src="images/logo-old.png" alt="K-Med Academy"></a>
+  <a href="index.html" class="back">&larr; Back to Home</a>
+</header>
+
+<main>
+  <div class="photo">
+    <img src="images/hero.jpg" alt="Siddha doctor with study books">
+    <div class="stats">
+      <div><b>4+</b><small>Courses</small></div><i></i>
+      <div><b>300+</b><small>Aspirants</small></div><i></i>
+      <div><b>1000+</b><small>Resources</small></div>
+    </div>
+  </div>
+
+  <div class="card-wrap">
+    <p class="eyebrow">YOUR JOURNEY BEGINS HERE <span></span></p>
+    <div class="card">
+      <h1 class="title" id="title">Welcome <em>Back</em></h1>
+      <p class="lead" id="lead">Login to continue your learning journey.</p>
+
+      <div class="tabs" id="tabs">
+        <span class="slider"></span>
+        <button id="tLogin" type="button" class="on">Login</button>
+        <button id="tReg" type="button">Enroll Now</button>
+      </div>
+
+      <form id="fLogin" class="show">
+        <div class="field"><input type="email" required placeholder=" "><label>Email Address</label></div>
+        <div class="field"><input type="password" required placeholder=" "><label>Password</label></div>
+        <div class="row"><label><input type="checkbox"> Remember me</label><a href="#">Forgot password?</a></div>
+        <button class="btn" type="submit">Login <span>&rarr;</span></button>
+        <p class="msg">&#10003; Login successful! Redirecting...</p>
+        <p class="switch">New to K-Med Academy? <a id="toReg">Enroll now</a></p>
+      </form>
+
+      <form id="fReg">
+        <div class="grid2">
+          <div class="field"><input type="text" required placeholder=" "><label>Full Name</label></div>
+          <div class="field"><input type="tel" required placeholder=" "><label>Phone Number</label></div>
+          <div class="field full"><input type="email" required placeholder=" "><label>Email Address</label></div>
+          <div class="field"><select required><option value="">Select a course</option><option>Siddha Maruthuvam</option><option>Modern Medical Sciences</option><option>Exam Crash &amp; Test Series</option><option>Research Methodology &amp; Biostatistics</option><option>Orthopedics &amp; Traumatology</option></select><label>Course</label></div>
+          <div class="field"><input type="password" required minlength="6" placeholder=" "><label>Create Password</label></div>
+        </div>
+        <button class="btn" type="submit">Enroll Now <span>&rarr;</span></button>
+        <p class="msg">&#10003; Enrollment successful! Please login.</p>
+        <p class="switch">Already enrolled? <a id="toLogin">Login</a></p>
+      </form>
+    </div>
+    <div class="pill"><span><i>&#10003;</i> Understand</span><span><i>&#10003;</i> Remember</span><span><i>&#10003;</i> Apply</span><span><i>&#10003;</i> Score</span></div>
+  </div>
+</main>
+
+<script>
+const tabs=document.getElementById('tabs'),tL=document.getElementById('tLogin'),tR=document.getElementById('tReg'),
+fL=document.getElementById('fLogin'),fR=document.getElementById('fReg'),title=document.getElementById('title'),lead=document.getElementById('lead');
+function show(login){
+  tabs.classList.toggle('reg',!login);
+  tL.classList.toggle('on',login);tR.classList.toggle('on',!login);
+  fL.classList.toggle('show',login);fR.classList.toggle('show',!login);
+  title.innerHTML=login?'Welcome <em>Back</em>':'Enroll <em>Now</em>';
+  lead.textContent=login?'Login to continue your learning journey.':'Create your account and start learning with K-Med Academy.';
+}
+tL.onclick=()=>show(true);tR.onclick=()=>show(false);
+document.getElementById('toReg').onclick=()=>show(false);
+document.getElementById('toLogin').onclick=()=>show(true);
+if(location.hash==='#register')show(false);
+const wanted=new URLSearchParams(location.search).get('course');
+if(wanted){const sel=document.querySelector('#fReg select');[...sel.options].forEach(o=>{if(o.textContent.trim()===wanted)sel.value=o.value||o.textContent});}
+addEventListener('hashchange',()=>show(location.hash!=='#register'));
+[fL,fR].forEach(f=>f.addEventListener('submit',e=>{
+  e.preventDefault();
+  f.querySelector('.msg').classList.add('show');
+  if(f===fR)setTimeout(()=>{f.reset();f.querySelector('.msg').classList.remove('show');show(true)},1600);
+}));
+</script>
+</body>
+</html>

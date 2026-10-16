@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>K-Med Academy | Understand. Remember. Apply. Score.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="extra.css">
+  
+<style>
+/* HEADER LOCKED - never moves or resizes */
+.nav{position:fixed!important;top:0!important;left:0!important;right:0!important;width:100%!important;z-index:100!important;transform:none!important}
+.nav .logo img,.nav.scrolled .logo img{height:68px!important;transition:none!important}
+body{padding-top:88px!important}
+@media(max-width:1000px){
+  .nav .logo img,.nav.scrolled .logo img{height:52px!important}
+  body{padding-top:72px!important}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<!-- LOADER -->
+<div class="loader" id="loader">
+  <img src="images/logo-old.png" alt="K-Med Academy">
+  <div class="bar"><span></span></div>
+</div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="#home" class="logo"><img src="images/logo-old.png" alt="K-Med Academy"></a>
+  <nav class="menu" id="menu">
+    <a href="#home" class="active">Home</a>
+    <a href="#courses">Courses</a>
+    <a href="#exams">Exams</a>
+    <a href="#careers">Careers</a>
+    <a href="#about">About Us</a>
+    <a href="#contact">Contact Us</a>
+    <a href="login.html#register" class="enroll-btn mobile-only">Enroll Now <i>&rarr;</i></a>
+  </nav>
+  <div class="nav-right">
+    <a href="#courses" class="search" aria-label="Search courses"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></a>
+    <a href="login.html#register" class="enroll-btn desktop-only">Enroll Now <i>&rarr;</i></a>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <img class="hero-img" src="images/hero.jpg" alt="Siddha doctor with study books">
+  <div class="hero-text">
+    <p class="eyebrow reveal">YOUR JOURNEY BEGINS HERE <span></span></p>
+    <h1>
+      <span class="ln"><b>YOUR JOURNEY TO</b></span>
+      <span class="ln gold"><b>EXCELLENCE</b></span>
+      <span class="ln"><b>BEGINS HERE</b></span>
+    </h1>
+    <p class="hero-p reveal d3">Build your confidence, knowledge and clinical skills with expert-led courses designed for Siddha doctors and medical aspirants. Learn from structured lessons, live classes, practical resources and assessments&mdash;all in one place.</p>
+  </div>
+  <a href="#courses" class="btn navy hero-btn reveal d4">Explore Courses <i>&rarr;</i></a>
+
+  <div class="hero-stats reveal d4">
+    <div><span class="pic"><svg viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/><path d="M22 9v6"/></svg></span><p><b data-count="4">0</b><b>+</b><small>Courses</small></p></div>
+    <i class="sep"></i>
+    <div><span class="pic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6"/><path d="M16 14.5c3 0 5 2 5 5"/></svg></span><p><b data-count="300">0</b><b>+</b><small>Aspirants</small></p></div>
+    <i class="sep"></i>
+    <div><span class="pic"><svg viewBox="0 0 24 24"><path d="M6 3h8l5 5v13H6z"/><path d="M14 3v5h5"/><path d="M9 13h7M9 17h7M9 9h3"/></svg></span><p><b data-count="1000">0</b><b>+</b><small>High-Yield<br>Resources</small></p></div>
+  </div>
+</section>
+
+<!-- UNDERSTAND / REMEMBER / APPLY / SCORE ROW -->
+<section class="pillars">
+  <div class="pillar reveal"><span class="pic"><svg viewBox="0 0 24 24"><path d="M12 6c-2-1.5-5-2-9-2v14c4 0 7 .5 9 2 2-1.5 5-2 9-2V4c-4 0-7 .5-9 2z"/><path d="M12 6v14"/></svg></span><div><h3>UNDERSTAND</h3><p>Concepts with Clarity</p></div></div>
+  <div class="pillar reveal d1"><span class="pic"><svg viewBox="0 0 24 24"><path d="M9 4a3 3 0 00-3 3 3 3 0 00-2 5 3 3 0 002 4 3 3 0 005 1V4a3 3 0 00-2 0z"/><path d="M15 4a3 3 0 013 3 3 3 0 012 5 3 3 0 01-2 4 3 3 0 01-5 1V4a3 3 0 012 0z"/></svg></span><div><h3>REMEMBER</h3><p>with Smart Strategies</p></div></div>
+  <div class="pillar reveal d2"><span class="pic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg></span><div><h3>APPLY</h3><p>in Clinical &amp; Exam Context</p></div></div>
+  <div class="pillar reveal d3"><span class="pic"><svg viewBox="0 0 24 24"><circle cx="11" cy="13" r="8"/><circle cx="11" cy="13" r="4.5"/><circle cx="11" cy="13" r="1"/><path d="M12 12l8-8M17 4h3v3"/></svg></span><div><h3>SCORE</h3><p>in Your Dream Exams</p></div></div>
+</section>
+
+<!-- COURSES -->
+<section class="courses" id="courses">
+  <div class="sec-head">
+    <p class="eyebrow center reveal"><span></span> OUR COURSES <span></span></p>
+    <h2 class="reveal d1 hl"><span class="l1">Courses built for</span><span class="l2"><em>Siddha doctors &amp; aspirants</em></span></h2>
+    <p class="reveal d2">Four focused programs that blend traditional Siddha knowledge with modern medical sciences and exam strategy.</p>
+  </div>
+  <div class="c-grid">
+    <article class="c-card tilt reveal">
+      <div class="spine green"><svg viewBox="0 0 24 24"><path d="M12 3c-3 4-7 6-7 11a7 7 0 0014 0c0-5-4-7-7-11z"/><path d="M12 21V11"/></svg><h3>SIDDHA MARUTHUVAM</h3></div>
+      <div class="c-body">
+        <p>Core Siddha medicine taught with clarity: fundamentals, diagnosis, therapeutics and classical text references.</p>
+        <ul><li>Basic principles &amp; Siddha concepts</li><li>Diagnosis, Noi Naadal &amp; therapeutics</li><li>Text-based revision notes</li></ul>
+        <div class="tags"><span>Live Classes</span><span>Recorded</span><span>Notes</span></div>
+        <a href="login.html?course=Siddha%20Maruthuvam#register" class="btn navy sm">Enroll Now <i>&rarr;</i></a>
+      </div>
+    </article>
+    <article class="c-card tilt reveal d1">
+      <div class="spine blue"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M8 21h8M12 11v6M7 16h10"/></svg><h3>MODERN MEDICAL SCIENCES</h3></div>
+      <div class="c-body">
+        <p>Anatomy, physiology, pathology, pharmacology and more, explained simply and linked to Siddha practice.</p>
+        <ul><li>Anatomy &amp; physiology essentials</li><li>Pathology &amp; pharmacology</li><li>Clinical correlation cases</li></ul>
+        <div class="tags"><span>Live Classes</span><span>Case Based</span><span>Tests</span></div>
+        <a href="login.html?course=Modern%20Medical%20Sciences#register" class="btn navy sm">Enroll Now <i>&rarr;</i></a>
+      </div>
+    </article>
+    <article class="c-card tilt reveal d3">
+      <div class="spine gold"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg><h3>EXAM CRASH &amp; TEST SERIES</h3></div>
+      <div class="c-body">
+        <p>High-yield revision, topic-wise tests and full-length mock exams with performance analysis to push your score.</p>
+        <ul><li>High-yield revision capsules</li><li>Topic-wise &amp; full mock tests</li><li>Rank &amp; weak-area analysis</li></ul>
+        <div class="tags"><span>Mock Tests</span><span>Analysis</span><span>Revision</span></div>
+        <a href="login.html?course=Exam%20Crash%20%26%20Test%20Series#register" class="btn navy sm">Enroll Now <i>&rarr;</i></a>
+      </div>
+    </article>
+    <article class="c-card wide tilt reveal">
+      <button class="poster" type="button" data-src="images/course-d.jpg" aria-label="View Course D poster"><img src="images/course-d.jpg" alt="Course D poster: RESEARCH METHODOLOGY &amp; BIOSTATISTICS"><span>&#128269; View Poster</span></button>
+      <div class="wide-in">
+        <div class="spine maroon"><small>COURSE D</small><h3>RESEARCH METHODOLOGY &amp; BIOSTATISTICS</h3></div>
+        <div class="c-body">
+          <p>Understand study design, data and statistics through exam-focused MCQ practice, with a steady weekly class and weekend test routine.</p>
+          <div class="feat"><div class="tile pink"><svg viewBox="0 0 24 24"><path d="M4 4h9v16H4z"/><path d="M6.5 8.5h4M6.5 12h4M6.5 15.5h2.5"/><circle cx="17" cy="14" r="4"/><circle cx="17" cy="14" r="1.4"/></svg><b>MCQ Oriented</b></div><div class="tile blue"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/><path d="M10.5 7.5l4 2.5-4 2.5z"/></svg><b>Weekly Once Class</b></div><div class="tile cream"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="14" height="14" rx="2"/><path d="M3 9.5h14M7 3v4M13 3v4"/><circle cx="18" cy="17" r="4"/><path d="M18 15v2.2h1.6"/></svg><b>Weekend Test</b></div></div>
+          <a href="login.html?course=Research%20Methodology%20%26%20Biostatistics#register" class="btn navy sm">Enroll Now <i>&rarr;</i></a>
+        </div>
+      </div>
+    </article>
+    <article class="c-card wide tilt reveal">
+      <button class="poster" type="button" data-src="images/course-e.jpg" aria-label="View Course E poster"><img src="images/course-e.jpg" alt="Course E poster: ORTHOPEDICS &amp; TRAUMATOLOGY"><span>&#128269; View Poster</span></button>
+      <div class="wide-in">
+        <div class="spine blue"><small>COURSE E</small><h3>ORTHOPEDICS &amp; TRAUMATOLOGY</h3></div>
+        <div class="c-body">
+          <p>Learn bones, joints and injuries with clear concepts and clinical teaching, backed by two classes a week and a weekend test.</p>
+          <div class="feat"><div class="tile cream"><svg viewBox="0 0 24 24"><path d="M12 3a5 5 0 00-3 9v2h6v-2a5 5 0 00-3-9z"/><path d="M10 17.5h4M10.5 20h3"/></svg><b>Concept Oriented Classes</b></div><div class="tile blue"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.2 2.5-5.5 6-5.5s6 2.3 6 5.5"/><rect x="15" y="4" width="6" height="9" rx="1"/><path d="M18 6v5M16.5 8.5h3"/></svg><b>Clinical Oriented Teaching</b></div><div class="tile pink"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="14" height="14" rx="2"/><path d="M3 9.5h14M7 3v4M13 3v4"/><circle cx="18" cy="17" r="4"/><path d="M18 15v2.2h1.6"/></svg><b>Weekly Twice</b></div><div class="tile green"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="12" height="16" rx="2"/><path d="M9 3h4v3H9zM8.5 11h6M8.5 15h4"/><path d="M15 19l5-5"/></svg><b>Weekend Test</b></div></div>
+          <a href="login.html?course=Orthopedics%20%26%20Traumatology#register" class="btn navy sm">Enroll Now <i>&rarr;</i></a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- EXAMS -->
+<section class="exams" id="exams">
+  <div class="sec-head">
+    <p class="eyebrow center reveal"><span></span> EXAMS <span></span></p>
+    <h2 class="reveal d1">An exam-ready method that <em>works</em></h2>
+    <p class="reveal d2">Every lesson follows one simple path, so you study smarter and score higher.</p>
+  </div>
+  <div class="method">
+    <div class="line"><span id="lineFill"></span></div>
+    <div class="m-step reveal"><div class="num">01</div><h3>UNDERSTAND</h3><p>Concept-first lessons with diagrams, clinical examples and Siddha references.</p></div>
+    <div class="m-step reveal d1"><div class="num">02</div><h3>REMEMBER</h3><p>Mnemonics, flowcharts and spaced revision so facts stay in your memory.</p></div>
+    <div class="m-step reveal d2"><div class="num">03</div><h3>APPLY</h3><p>Case-based questions and clinical scenarios to use what you have learned.</p></div>
+    <div class="m-step reveal d3"><div class="num">04</div><h3>SCORE</h3><p>Mock tests and analytics that show exactly where to improve.</p></div>
+  </div>
+
+  <div class="exam-target reveal d2" id="examTarget">
+    <div class="et-left">
+      <p class="et-eye">WE PREPARE YOU FOR</p>
+      <h4>Every exam on <em>your path</em></h4>
+      <p>One method. Five goals. Pick your target and we map the way.</p>
+    </div>
+    <div class="et-grid">
+      <div class="et-card"><span class="et-no">01</span><b>AIAPGET</b><small>National PG entrance</small><i>&rarr;</i></div>
+      <div class="et-card"><span class="et-no">02</span><b>University Exams</b><small>Theory &amp; practical ready</small><i>&rarr;</i></div>
+      <div class="et-card"><span class="et-no">03</span><b>Govt Medical Officer Exams</b><small>Public service careers</small><i>&rarr;</i></div>
+      <div class="et-card"><span class="et-no">04</span><b>PG &amp; Research Entrances</b><small>Specialise &amp; publish</small><i>&rarr;</i></div>
+      <div class="et-card"><span class="et-no">05</span><b>Professional Assessments</b><small>Prove your skills</small><i>&rarr;</i></div>
+    </div>
+    <div class="et-marquee" aria-hidden="true">
+      <div class="track">
+        <span>AIAPGET</span><span>University Exams</span><span>Government Medical Officer Exams</span><span>PG &amp; Research Entrances</span><span>Professional Assessments</span>
+        <span>AIAPGET</span><span>University Exams</span><span>Government Medical Officer Exams</span><span>PG &amp; Research Entrances</span><span>Professional Assessments</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAREERS -->
+<section class="careers" id="careers">
+  <div class="sec-head">
+    <p class="eyebrow center reveal"><span></span> CAREERS <span></span></p>
+    <h2 class="reveal d1">Careers after your <em>Siddha degree</em></h2>
+    <p class="reveal d2">We guide you from learning to a rewarding professional path.</p>
+  </div>
+
+  <div class="car-flex reveal d1" id="carFlex">
+    <div class="cp active" data-n="01" style="--bg:linear-gradient(160deg,#0a1b52,#16327f)" tabindex="0">
+      <div class="cp-ic"><svg viewBox="0 0 24 24"><path d="M6 3v6a4 4 0 008 0V3"/><path d="M10 13v3a4 4 0 008 0v-2"/><circle cx="18" cy="12" r="2"/></svg></div>
+      <span class="cp-vert">Clinical Practice</span>
+      <div class="cp-txt"><h3>Clinical Practice</h3><p>Set up your own clinic or join hospitals and wellness centres.</p><div class="cp-tags"><span>Own Clinic</span><span>Hospitals</span><span>Wellness</span></div></div>
+    </div>
+    <div class="cp" data-n="02" style="--bg:linear-gradient(160deg,#0d3d31,#14634f)" tabindex="0">
+      <div class="cp-ic"><svg viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/></svg></div>
+      <span class="cp-vert">Teaching &amp; Academia</span>
+      <div class="cp-txt"><h3>Teaching &amp; Academia</h3><p>Become a faculty member in Siddha and AYUSH colleges.</p><div class="cp-tags"><span>Faculty</span><span>AYUSH Colleges</span><span>Mentoring</span></div></div>
+    </div>
+    <div class="cp" data-n="03" style="--bg:linear-gradient(160deg,#601724,#9a2b3c)" tabindex="0">
+      <div class="cp-ic"><svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5 9a2 2 0 002 3h10a2 2 0 002-3l-5-9V3"/></svg></div>
+      <span class="cp-vert">Research</span>
+      <div class="cp-txt"><h3>Research</h3><p>Contribute to clinical studies and evidence for Siddha medicine.</p><div class="cp-tags"><span>Clinical Studies</span><span>Publications</span><span>Evidence</span></div></div>
+    </div>
+    <div class="cp" data-n="04" style="--bg:linear-gradient(160deg,#14246d,#2a47a8)" tabindex="0">
+      <div class="cp-ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></div>
+      <span class="cp-vert">Government Services</span>
+      <div class="cp-txt"><h3>Government Services</h3><p>Prepare for medical officer and public health positions.</p><div class="cp-tags"><span>Medical Officer</span><span>Public Health</span><span>Stable Career</span></div></div>
+    </div>
+    <div class="cp" data-n="05" style="--bg:linear-gradient(160deg,#7d5410,#c28a1d)" tabindex="0">
+      <div class="cp-ic"><svg viewBox="0 0 24 24"><path d="M12 21c-5-3-8-6-8-10a5 5 0 018-4 5 5 0 018 4c0 4-3 7-8 10z"/></svg></div>
+      <span class="cp-vert">Wellness &amp; Pharma</span>
+      <div class="cp-txt"><h3>Wellness &amp; Pharma</h3><p>Work in herbal product, wellness and healthcare industries.</p><div class="cp-tags"><span>Herbal Products</span><span>Wellness</span><span>Healthcare</span></div></div>
+    </div>
+  </div>
+
+  <div class="car-cta reveal d2">
+    <div><h3>Need career guidance?</h3><p>Talk to our mentors and plan your next step.</p></div>
+    <a href="#contact" class="btn gold sm">Talk to us <i>&rarr;</i></a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-img reveal-left">
+    <div class="arch"><img src="images/books.jpeg" alt="Siddha Maruthuvam, Modern Medical Sciences and Research books"></div>
+    <div class="float-note n1"><b>Siddha</b> Knowledge</div>
+    <div class="float-note n2"><b>Modern</b> Approach</div>
+    <div class="float-note n3"><b>Real</b> Exam Success</div>
+    <span class="ring"></span>
+  </div>
+  <div class="about-text">
+    <p class="eyebrow reveal">ABOUT US <span></span></p>
+    <h2 class="reveal d1">Where <em>Siddha wisdom</em> meets modern medical learning</h2>
+    <p class="reveal d2">K-Med Academy is built for Siddha doctors and medical aspirants who want more than rote learning. We combine traditional knowledge with modern medical sciences, research skills and proven exam strategies, so you understand deeply, remember easily and score with confidence.</p>
+    <ul class="ticks">
+      <li class="reveal d2"><i>&#10003;</i> Expert-led, structured lessons and live classes</li>
+      <li class="reveal d3"><i>&#10003;</i> Practical, high-yield resources made for exams</li>
+      <li class="reveal d3"><i>&#10003;</i> Regular assessments with clear performance analysis</li>
+      <li class="reveal d4"><i>&#10003;</i> Friendly doubt support and career guidance</li>
+    </ul>
+    <div class="mv">
+      <div class="reveal d2"><h4>Our Mission</h4><p>Make clear, exam-focused Siddha and medical education accessible to every aspirant.</p></div>
+      <div class="reveal d3"><h4>Our Vision</h4><p>Build confident, skilled and compassionate doctors who carry Siddha forward.</p></div>
+    </div>
+    <a href="login.html#register" class="btn navy reveal d3">Enroll Now <i>&rarr;</i></a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="sec-head">
+    <p class="eyebrow center reveal"><span></span> FAQ <span></span></p>
+    <h2 class="reveal d1">Questions? <em>We have answers</em></h2>
+  </div>
+  <div class="acc reveal d1" id="acc">
+    <div class="q open"><button>How do I enroll?<i>+</i></button><div class="a"><p>Click Enroll Now, create your account with name, email and phone, and choose your course. It takes about a minute.</p></div></div>
+    <div class="q"><button>Are classes live or recorded?<i>+</i></button><div class="a"><p>Both. Attend live classes and revisit the recordings whenever you need.</p></div></div>
+    <div class="q"><button>Do you provide notes and mock tests?<i>+</i></button><div class="a"><p>Yes. Every course includes high-yield notes, topic-wise tests and full-length mock exams with analysis.</p></div></div>
+    <div class="q"><button>Can I join while working or in internship?<i>+</i></button><div class="a"><p>Absolutely. Flexible timings and recorded lessons make it easy to learn alongside your schedule.</p></div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-info">
+    <p class="eyebrow reveal">CONTACT US <span></span></p>
+    <h2 class="reveal d1">Have questions? <em>Let's talk.</em></h2>
+    <p class="reveal d2">Our team will help you choose the right course and get started on your journey.</p>
+    <div class="info reveal d2"><span class="pic"><svg viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 10-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div><b>Address</b><p>K-Med Academy, Your City, Tamil Nadu, India</p></div></div>
+    <div class="info reveal d3"><span class="pic"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></span><div><b>Phone</b><p>+91 98765 43210</p></div></div>
+    <div class="info reveal d3"><span class="pic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><div><b>Email</b><p>info@kmedacademy.com</p></div></div>
+  </div>
+  <form class="form reveal-right" id="contactForm">
+    <h3>Send us a message</h3>
+    <div class="field"><input type="text" required placeholder=" "><label>Your Name</label></div>
+    <div class="field"><input type="email" required placeholder=" "><label>Email Address</label></div>
+    <div class="field"><input type="tel" placeholder=" "><label>Phone Number</label></div>
+    <div class="field"><textarea rows="4" required placeholder=" "></textarea><label>Your Message</label></div>
+    <button class="btn navy full" type="submit">Send Message</button>
+    <p class="ok" id="ok">&#10003; Thank you! We will contact you soon.</p>
+  </form>
+</section>
+
+<footer>
+  <div class="f-top">
+    <div class="f-brand"><img src="images/logo.png" alt="K-Med Academy"><p>Understand. Remember. Apply. Score. Clear, exam-focused learning for Siddha doctors and medical aspirants.</p></div>
+    <div><h4>Explore</h4><a href="#home">Home</a><a href="#courses">Courses</a><a href="#exams">Exams</a><a href="#careers">Careers</a></div>
+    <div><h4>Company</h4><a href="#about">About Us</a><a href="#faq">FAQ</a><a href="#contact">Contact Us</a><a href="login.html">Login</a></div>
+  </div>
+  <div class="f-bot"><p>&copy; 2026 K-Med Academy. All rights reserved.</p></div>
+</footer>
+
+<div class="lightbox" id="lightbox"><button aria-label="Close">&times;</button><img alt="Course poster"></div>
+
+<button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
+<script src="script.js"></script>
+<script src="extra.js"></script>
+
+</html>
