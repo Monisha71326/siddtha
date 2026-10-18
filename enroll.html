@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enroll | K-Med Academy</title>
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0b1f5c;--navy2:#16327f;--gold:#c28a1d;--gold2:#e3ab3c;--cream:#fff9ef;--peach:#fdebd0;--muted:#4f5a80;--line:rgba(11,31,92,.12);
+--gold-grad:linear-gradient(135deg,#b97f12,#e8b449 50%,#c28a1d);--navy-grad:linear-gradient(135deg,#0a1b52,#16327f);--head:'Barlow Semi Condensed',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:linear-gradient(180deg,var(--cream),#fff);color:var(--navy);line-height:1.6;min-height:100vh}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+img{max-width:100%;display:block}
+h1,h2,h3{font-family:var(--head);line-height:1.1}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 5%;background:#fff;box-shadow:0 4px 24px rgba(11,31,92,.08);position:sticky;top:0;z-index:50}
+.top img{height:46px;width:auto}
+.back{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:.95rem;color:var(--navy);padding:10px 18px;border-radius:12px;border:1.5px solid var(--line);transition:.3s}
+.back:hover{background:var(--navy-grad);color:#fff;border-color:transparent}
+.wrap{max-width:1150px;margin:0 auto;padding:48px 5% 70px}
+.head{text-align:center;margin-bottom:38px}
+.eyebrow{font-family:var(--head);font-weight:700;font-size:.85rem;letter-spacing:.3em;color:var(--gold);margin-bottom:10px}
+.head h1{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:800;text-transform:uppercase}
+.head h1 em{font-style:normal;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.head p{color:var(--muted);margin-top:10px}
+.grid{display:grid;grid-template-columns:1fr 1.1fr;gap:34px;align-items:start}
+.panel{position:relative;overflow:hidden;border-radius:26px;color:#fff;padding:38px 34px;background:var(--bg,linear-gradient(160deg,#0a1b52,#16327f));box-shadow:0 26px 60px rgba(11,31,92,.25);min-height:420px;transition:background .5s}
+.panel::before{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.08)}
+.panel .tag{display:inline-block;font-family:var(--head);font-weight:700;font-size:.78rem;letter-spacing:.28em;color:#f4cf7a;background:rgba(244,207,122,.15);padding:5px 14px;border-radius:50px;margin-bottom:18px}
+.panel h2{font-size:2rem;font-weight:700;margin-bottom:6px;position:relative}
+.panel .subt{color:#f4cf7a;font-weight:600;margin-bottom:12px;position:relative}
+.panel p{color:#dbe3ff;margin-bottom:18px;position:relative}
+.panel ul{display:grid;gap:10px;margin-bottom:22px;position:relative}
+.panel li{position:relative;padding-left:28px;font-weight:500;font-size:.96rem}
+.panel li::before{content:"\2713";position:absolute;left:0;color:#f4cf7a;font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:8px;position:relative}
+.chips span{padding:6px 14px;border-radius:50px;font-size:.78rem;font-weight:600;color:#f4cf7a;border:1px solid rgba(244,207,122,.5);background:rgba(255,255,255,.08)}
+.panel.swap{animation:swap .5s cubic-bezier(.2,.8,.2,1)}
+@keyframes swap{from{opacity:0;transform:translateY(14px)}}
+.help{margin-top:18px;padding:18px 22px;border-radius:18px;background:#fff;border:1px dashed rgba(194,138,29,.55)}
+.help b{font-family:var(--head);font-size:1.1rem}
+.help p{color:var(--muted);font-size:.92rem}
+.form{padding:38px;border-radius:26px;background:#fff;border:1px solid var(--line);box-shadow:0 22px 55px rgba(11,31,92,.12)}
+.form h3{font-size:1.7rem;text-transform:uppercase;margin-bottom:6px}
+.form .sub{color:var(--muted);font-size:.95rem;margin-bottom:24px}
+.field{position:relative;margin-bottom:20px}
+.field input,.field select,.field textarea{width:100%;padding:16px 18px;background:var(--cream);border:1.5px solid transparent;border-radius:12px;color:var(--navy);font-family:inherit;font-size:1rem;outline:0;transition:.3s;resize:none;appearance:none;-webkit-appearance:none}
+.field select{background-image:linear-gradient(45deg,transparent 50%,var(--navy) 50%),linear-gradient(135deg,var(--navy) 50%,transparent 50%);background-position:calc(100% - 22px) 50%,calc(100% - 16px) 50%;background-size:6px 6px;background-repeat:no-repeat;padding-right:44px;cursor:pointer;text-overflow:ellipsis}
+.field label{position:absolute;left:18px;top:16px;color:var(--muted);pointer-events:none;transition:.25s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold);background-color:#fff;box-shadow:0 0 0 4px rgba(227,171,60,.2)}
+.field input:focus+label,.field input:not(:placeholder-shown)+label,.field textarea:focus+label,.field textarea:not(:placeholder-shown)+label,.field select+label{top:-10px;left:14px;font-size:.78rem;color:var(--gold);background:#fff;padding:0 8px;font-weight:600}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hp{position:absolute;left:-9999px;opacity:0;height:0;width:0}
+.btn{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;padding:16px 30px;border-radius:12px;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:1.05rem;background:var(--navy-grad);color:#fff;box-shadow:0 12px 28px rgba(11,31,92,.32);transition:transform .3s,box-shadow .3s,opacity .3s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 18px 36px rgba(11,31,92,.42)}
+.btn:disabled{opacity:.7;cursor:wait;transform:none}
+.spin{display:none;width:18px;height:18px;border-radius:50%;border:3px solid rgba(255,255,255,.4);border-top-color:#fff;animation:sp .7s linear infinite}
+.btn.load .spin{display:inline-block}
+.btn.load .arrow{display:none}
+@keyframes sp{to{transform:rotate(360deg)}}
+.err{display:none;color:#b3261e;font-size:.9rem;font-weight:600;margin-bottom:14px}
+.err.show{display:block}
+.ok{display:none;margin-top:16px;padding:14px 18px;border-radius:12px;background:#e6f6ec;color:#14804f;text-align:center;font-weight:600}
+.ok.show{display:block;animation:swap .5s}
+@media(max-width:900px){
+  .grid{grid-template-columns:1fr}
+  .panel{min-height:0;padding:30px 24px}
+  .panel h2{font-size:1.7rem}
+  .form{padding:28px 22px}
+  .row{grid-template-columns:1fr}
+  .field input,.field select,.field textarea{font-size:16px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a href="index.html"><img src="images/logom.webp" alt="K-Med Academy"></a>
+  <a href="index.html#courses" class="back">&larr; Back to Courses</a>
+</header>
+
+<main class="wrap">
+  <div class="head">
+    <p class="eyebrow">ENROLL NOW</p>
+    <h1>Start your <em>journey</em> with us</h1>
+    <p>Choose your course, share your details and our team will contact you.</p>
+  </div>
+
+  <div class="grid">
+    <div>
+      <div class="panel" id="panel">
+        <span class="tag" id="pTag"></span>
+        <h2 id="pTitle"></h2>
+        <div class="subt" id="pSub"></div>
+        <p id="pDesc"></p>
+        <ul id="pList"></ul>
+        <div class="chips" id="pChips"></div>
+      </div>
+      <div class="help">
+        <b>Need help choosing?</b><p>Call or WhatsApp us: +91 99624 95128</p>
+      </div>
+    </div>
+
+    <form class="form" id="enrollForm" novalidate>
+      <h3>Enrollment details</h3>
+      <p class="sub">Fill this in and we will get back to you shortly.</p>
+
+      <div class="field">
+        <select id="course" required></select>
+        <label for="course">Select Course</label>
+      </div>
+      <div class="field"><input type="text" id="name" required placeholder=" " autocomplete="name"><label for="name">Your Name</label></div>
+      <div class="row">
+        <div class="field"><input type="tel" id="phone" required placeholder=" " inputmode="numeric" autocomplete="tel"><label for="phone">Phone Number</label></div>
+        <div class="field"><input type="email" id="email" placeholder=" " autocomplete="email"><label for="email">Email (optional)</label></div>
+      </div>
+      <div class="field"><textarea id="msg" rows="3" placeholder=" "></textarea><label for="msg">Message (optional)</label></div>
+
+      <input type="text" class="hp" id="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <p class="err" id="err"></p>
+      <button class="btn" id="submitBtn" type="submit"><span class="spin"></span><span id="btnTxt">Submit Enrollment</span> <span class="arrow">&rarr;</span></button>
+      <p class="ok" id="ok">&#10003; Thank you! Your enrollment details have been sent. Our team will contact you soon.</p>
+    </form>
+  </div>
+</main>
+
+<script>
+(function(){
+  // Web3Forms key: enrollment details are emailed to kmedacademy1@gmail.com
+  var ACCESS_KEY = "9f4764c9-cecd-4c62-920c-798b5c4b7b2a";
+
+  // URL: enroll.html?course=A   (A, B, C, D or E)
+  var COURSES = {
+    A:{tag:"COURSE A",title:"Basic Biomedical Sciences, Research Methodology & Biostatistics",
+      bg:"linear-gradient(160deg,#0d3d31,#14634f)",
+      sub:"Anatomy • Physiology • Biochemistry • Microbiology • Pathology • Research Methodology & Biostatistics",
+      desc:"Strong biomedical foundations through concept-based teaching, with weekly live classes and regular tests.",
+      list:["Concept-based teaching","Structured notes & one-liners","High-yield resources","MCQ & PYQ practice","Weekend Test"],
+      chips:["Weekly 3 Days Live Classes","Subject & Full-Length Tests"]},
+    B:{tag:"COURSE B",title:"Siddha Strategy Series",
+      bg:"linear-gradient(160deg,#14246d,#2a47a8)",
+      sub:"BSMS Siddha Curriculum",
+      desc:"A strategy-led series to plan your study and revision across the BSMS Siddha curriculum.",
+      list:["Strategy Discussion","Weekly Study Plan & Revision Plan","Weekend Test"],
+      chips:["Strategy","Revision Plan","Weekend Test"]},
+    C:{tag:"COURSE C",title:"Siddha Regular Classes",
+      bg:"linear-gradient(160deg,#7d5410,#c28a1d)",
+      sub:"",
+      desc:"MCQ-oriented Siddha subject classes with regular strategy discussions.",
+      list:["MCQ-oriented Siddha subject classes","Weekly 2 Classes (Tuesday & Thursday)","Strategy Discussion"],
+      chips:["MCQ Oriented","Tuesday & Thursday","Strategy"]},
+    D:{tag:"COURSE D",title:"Research Methodology & Biostatistics",
+      bg:"linear-gradient(160deg,#601724,#9a2b3c)",
+      sub:"",
+      desc:"Understand study design, data and statistics through exam-focused MCQ practice.",
+      list:["MCQ Oriented","Weekly Once Class","Weekend Test"],
+      chips:["MCQ Oriented","Weekly Once","Weekend Test"]},
+    E:{tag:"COURSE E",title:"Orthopedics & Traumatology",
+      bg:"linear-gradient(160deg,#14246d,#2a47a8)",
+      sub:"",
+      desc:"Learn bones, joints and injuries with clear concepts and clinical teaching.",
+      list:["Concept Oriented Classes","Clinical Oriented Teaching","Weekly Twice","Weekend Test"],
+      chips:["Concept Based","Clinical","Weekend Test"]}
+  };
+  var KEYS = Object.keys(COURSES);
+  var sel = document.getElementById("course");
+  var panel = document.getElementById("panel");
+  function esc(t){return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;");}
+  function label(k){return COURSES[k].tag.replace("COURSE","Course") + " - " + COURSES[k].title;}
+
+  var ph = document.createElement("option");
+  ph.value = ""; ph.textContent = "Choose a course"; ph.disabled = true; sel.appendChild(ph);
+  KEYS.forEach(function(k){
+    var o = document.createElement("option"); o.value = k; o.textContent = label(k); sel.appendChild(o);
+  });
+
+  function show(k){
+    var c = COURSES[k]; if(!c) return;
+    panel.style.background = c.bg;
+    document.getElementById("pTag").textContent = c.tag;
+    document.getElementById("pTitle").textContent = c.title;
+    document.getElementById("pSub").textContent = c.sub;
+    document.getElementById("pSub").style.display = c.sub ? "block" : "none";
+    document.getElementById("pDesc").textContent = c.desc;
+    document.getElementById("pList").innerHTML = c.list.map(function(t){return "<li>"+esc(t)+"</li>";}).join("");
+    document.getElementById("pChips").innerHTML = c.chips.map(function(t){return "<span>"+esc(t)+"</span>";}).join("");
+    panel.classList.remove("swap"); void panel.offsetWidth; panel.classList.add("swap");
+  }
+
+  var q = (new URLSearchParams(location.search).get("course") || "").toUpperCase();
+  var fromUrl = !!COURSES[q];
+  sel.value = fromUrl ? q : "";
+  show(fromUrl ? q : "A");
+  sel.addEventListener("change", function(){ show(sel.value); });
+
+  var form = document.getElementById("enrollForm");
+  var err = document.getElementById("err");
+  var ok = document.getElementById("ok");
+  var btn = document.getElementById("submitBtn");
+  var btnTxt = document.getElementById("btnTxt");
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    err.classList.remove("show"); ok.classList.remove("show");
+    if(document.getElementById("hp").value){ ok.classList.add("show"); return; }
+
+    var key = sel.value;
+    var name = document.getElementById("name").value.trim();
+    var phone = document.getElementById("phone").value.replace(/\D/g,"");
+    var email = document.getElementById("email").value.trim();
+    var msg = document.getElementById("msg").value.trim();
+
+    var m = "";
+    if(!key) m = "Please select a course.";
+    else if(!name) m = "Please enter your name.";
+    else if(phone.length < 10) m = "Please enter a valid phone number.";
+    else if(email && !/^\S+@\S+\.\S+$/.test(email)) m = "Please enter a valid email address.";
+    if(m){ err.textContent = m; err.classList.add("show"); return; }
+
+    btn.disabled = true; btn.classList.add("load"); btnTxt.textContent = "Sending...";
+    var courseName = label(key);
+    var payload = {
+      access_key: ACCESS_KEY,
+      subject: "New Enrollment: " + courseName + " - " + name,
+      from_name: "K-Med Academy Website",
+      course: courseName, name: name, phone: phone,
+      message: msg || "No message"
+    };
+    if(email) payload.email = email;
+
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {"Content-Type":"application/json","Accept":"application/json"},
+      body: JSON.stringify(payload)
+    })
+    .then(function(r){ return r.json().then(function(j){ return {ok:r.ok, j:j}; }); })
+    .then(function(res){
+      if(res.ok && res.j.success){
+        ok.classList.add("show"); form.reset(); sel.value = "";
+        ok.scrollIntoView({behavior:"smooth", block:"center"});
+      } else { throw new Error((res.j && res.j.message) || "failed"); }
+    })
+    .catch(function(){
+      err.textContent = "Sorry, we could not send your details. Please check your internet and try again, or call +91 99624 95128.";
+      err.classList.add("show");
+    })
+    .finally(function(){
+      btn.disabled = false; btn.classList.remove("load"); btnTxt.textContent = "Submit Enrollment";
+    });
+  });
+})();
+</script>
+</body>
+</html>

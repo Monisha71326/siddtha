@@ -16,7 +16,7 @@ function onScroll() {
   toTop.classList.toggle('show', scrollY > 600);
   let cur = 0; secs.forEach((s, i) => { if (s && scrollY + 220 >= s.offsetTop) cur = i; });
   links.forEach((a, i) => a.classList.toggle('active', i === cur));
-  if (lineFill) {
+  if (lineFill && method) {
     const r = method.getBoundingClientRect();
     lineFill.style.width = Math.max(0, Math.min(100, ((innerHeight * .8 - r.top) / (r.height * .8)) * 100)) + '%';
   }
@@ -48,15 +48,6 @@ const cio = new IntersectionObserver(es => es.forEach(e => {
 }), { threshold: .4 });
 $$('[data-count]').forEach(el => cio.observe(el));
 
-// 3D tilt on cards
-$$('.tilt').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const r = card.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
-    card.style.transform = `perspective(900px) rotateX(${((y / r.height) - .5) * -8}deg) rotateY(${((x / r.width) - .5) * 8}deg) translateY(-8px)`;
-  });
-  card.addEventListener('mouseleave', () => card.style.transform = '');
-});
-
 // FAQ accordion
 $$('#acc .q').forEach(q => {
   const a = $('.a', q);
@@ -68,133 +59,44 @@ $$('#acc .q').forEach(q => {
   };
 });
 
-// contact form
-$('#contactForm').addEventListener('submit', e => {
-  e.preventDefault(); $('#ok').classList.add('show'); e.target.reset();
-  setTimeout(() => $('#ok').classList.remove('show'), 4000);
-});
-
-// poster lightbox
-const lb = $('#lightbox');
-if (lb) {
-  $$('.poster').forEach(b => b.addEventListener('click', () => { $('img', lb).src = b.dataset.src; lb.classList.add('show'); }));
-  lb.addEventListener('click', () => lb.classList.remove('show'));
-  addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('show'); });
-}
-
-
-
-// ===== Course showcase: course list + one animated stage (adds to the end of script.js) =====
+// contact form -> emailed to the academy inbox through Web3Forms
 (() => {
-  const grid = $('.c-grid');
-  if (!grid) return;
-  const cards = $$('.c-card', grid);
-  if (!cards.length) return;
-
-  const wrap = document.createElement('div');
-  wrap.className = 'sc';
-  const tabs = document.createElement('div');
-  tabs.className = 'sc-tabs';
-  tabs.setAttribute('role', 'tablist');
-  grid.before(wrap);
-  wrap.append(tabs, grid);
-
-  const pad = n => String(n).padStart(2, '0');
-  const el = (tag, cls, text) => {
-    const e = document.createElement(tag);
-    if (cls) e.className = cls;
-    if (text) e.textContent = text;
-    return e;
-  };
-
-  let cur = 0, timer = null, userStopped = false;
-
-  cards.forEach((card, i) => {
-    // cards are shown one at a time, so drop scroll-reveal and tilt
-    card.classList.remove('reveal', 'tilt');
-    io.unobserve(card);
-    card.dataset.n = pad(i + 1);
-    const spine = $('.spine', card);
-    spine.dataset.n = pad(i + 1);
-
-    // no poster in the cards
-    const poster = $('.poster', card);
-    if (poster) poster.remove();
-
-    // ---- art panel ----
-    const art = el('div', 'sc-art');
-    art.dataset.n = pad(i + 1);
-    ['r1', 'r2', 'r3'].forEach(r => art.append(el('span', 'ring ' + r)));
-    const sym = el('div', 'sc-sym');
-    const svg = $('svg', spine);
-    if (svg) {
-      sym.append(svg.cloneNode(true));
-    } else {
-      const label = ($('small', spine) || {}).textContent || '';
-      sym.classList.add('letter');
-      sym.textContent = label.replace(/course/i, '').trim().charAt(0) || pad(i + 1);
+  const ACCESS_KEY = '9f4764c9-cecd-4c62-920c-798b5c4b7b2a';
+  const form = $('#contactForm'), ok = $('#ok'), err = $('#cErr'), btn = $('#cBtn');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    ok.classList.remove('show'); err.classList.remove('show');
+    if ($('#cHp').value) { ok.classList.add('show'); return; }
+    const name = $('#cName').value.trim(), email = $('#cEmail').value.trim(),
+          phone = $('#cPhone').value.trim(), msg = $('#cMsg').value.trim();
+    if (!name || !/^\S+@\S+\.\S+$/.test(email) || !msg) {
+      err.textContent = 'Please enter your name, a valid email and your message.';
+      err.classList.add('show'); return;
     }
-    art.append(sym, el('div', 'sc-count', pad(i + 1) + ' / ' + pad(cards.length)), el('div', 'sc-brand', 'K-MED ACADEMY'));
-    card.append(art);
-
-    // mouse spotlight + parallax on the art panel
-    art.addEventListener('mousemove', e => {
-      const r = art.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
-      art.style.setProperty('--mx', (x * 100) + '%');
-      art.style.setProperty('--my', (y * 100) + '%');
-      art.style.setProperty('--px', ((x - .5) * 36) + 'px');
-      art.style.setProperty('--py', ((y - .5) * 36) + 'px');
-    });
-    art.addEventListener('mouseleave', () => {
-      ['--mx', '--my', '--px', '--py'].forEach(p => art.style.removeProperty(p));
-    });
-
-    // ---- tab ----
-    const color = ['green', 'blue', 'gold', 'maroon'].find(c => spine.classList.contains(c)) || 'gold';
-    const tab = el('button', 'sc-tab ' + color);
-    tab.type = 'button';
-    tab.setAttribute('role', 'tab');
-    const arrow = el('i');
-    arrow.innerHTML = '&rarr;';
-    tab.append(el('span', 'n', pad(i + 1)), el('span', 't', $('h3', spine).textContent), arrow);
-    tab.addEventListener('click', () => { userStopped = true; pause(); show(i); });
-    tab.addEventListener('keydown', e => {
-      if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
-      e.preventDefault();
-      const n = (i + (e.key === 'ArrowDown' ? 1 : cards.length - 1)) % cards.length;
-      userStopped = true; pause(); show(n); tabEls[n].focus();
-    });
-    tabs.append(tab);
+    btn.disabled = true; btn.textContent = 'Sending...';
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: ACCESS_KEY, subject: 'New website enquiry - ' + name,
+        from_name: 'K-Med Academy Website', name, email, phone: phone || 'Not given', message: msg
+      })
+    })
+      .then(r => r.json())
+      .then(j => {
+        if (!j.success) throw new Error();
+        ok.classList.add('show'); form.reset();
+        setTimeout(() => ok.classList.remove('show'), 5000);
+      })
+      .catch(() => {
+        err.textContent = 'Sorry, message could not be sent. Please call +91 99624 95128.';
+        err.classList.add('show');
+      })
+      .finally(() => { btn.disabled = false; btn.textContent = 'Send Message'; });
   });
-
-  const tabEls = $$('.sc-tab', tabs);
-
-  function show(i) {
-    cur = i;
-    cards.forEach((c, k) => c.classList.toggle('is-active', k === i));
-    tabEls.forEach((t, k) => {
-      t.classList.toggle('active', k === i);
-      t.setAttribute('aria-selected', k === i ? 'true' : 'false');
-    });
-  }
-  function play() {
-    if (userStopped || timer || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    wrap.classList.add('playing');
-    timer = setInterval(() => show((cur + 1) % cards.length), 6000);
-  }
-  function pause() {
-    clearInterval(timer);
-    timer = null;
-    wrap.classList.remove('playing');
-  }
-
-  wrap.addEventListener('mouseenter', pause);
-  wrap.addEventListener('mouseleave', play);
-  show(0);
-  play();
 })();
-// ADD at the END of script.js : mouse spotlight on exam cards
+
+// mouse spotlight on "For Whom" cards
 $$('.et-card').forEach(c => {
   c.addEventListener('mousemove', e => {
     const r = c.getBoundingClientRect();
@@ -202,45 +104,8 @@ $$('.et-card').forEach(c => {
     c.style.setProperty('--my', (e.clientY - r.top) + 'px');
   });
 });
-// ADD at the END of script.js
-(() => {
-  const cps = $$('.cp');
-  if (!cps.length) return;
-  const act = i => cps.forEach((c, k) => c.classList.toggle('active', k === i));
-  cps.forEach((c, i) => {
-    c.addEventListener('mouseenter', () => { if (matchMedia('(min-width:901px)').matches) act(i); });
-    c.addEventListener('click', () => act(i));
-    c.addEventListener('focus', () => act(i));
-  });
-})();
-// ADD at the END of script.js : mouse spotlight on exam cards
-$$('.et-card').forEach(c => {
-  c.addEventListener('mousemove', e => {
-    const r = c.getBoundingClientRect();
-    c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-    c.style.setProperty('--my', (e.clientY - r.top) + 'px');
-  });
-});
-// ADD at the END of script.js
-(() => {
-  const cps = $$('.cp');
-  if (!cps.length) return;
-  const act = i => cps.forEach((c, k) => c.classList.toggle('active', k === i));
-  cps.forEach((c, i) => {
-    c.addEventListener('mouseenter', () => { if (matchMedia('(min-width:901px)').matches) act(i); });
-    c.addEventListener('click', () => act(i));
-    c.addEventListener('focus', () => act(i));
-  });
-})();
-// ADD at the END of script.js : mouse spotlight on exam cards
-$$('.et-card').forEach(c => {
-  c.addEventListener('mousemove', e => {
-    const r = c.getBoundingClientRect();
-    c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-    c.style.setProperty('--my', (e.clientY - r.top) + 'px');
-  });
-});
-// ADD at the END of script.js
+
+// careers accordion
 (() => {
   const cps = $$('.cp');
   if (!cps.length) return;

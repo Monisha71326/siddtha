@@ -40,7 +40,7 @@ h2 em{font-style:normal;background:var(--gold-grad);-webkit-background-clip:text
 /* nav */
 .nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:10px 4%;background:#fff;box-shadow:0 4px 24px rgba(11,31,92,.07);transition:.4s}
 .nav.scrolled{box-shadow:0 8px 30px rgba(11,31,92,.15)}
-.logo img{height:68px;width:auto;transition:.4s}
+.logo img{height:50px;width:auto;transition:.4s}
 .nav.scrolled .logo img{height:54px}
 .menu{display:flex;gap:40px}
 .menu a{position:relative;font-weight:500;font-size:.95rem;color:var(--navy);padding:6px 0;transition:.3s}
@@ -815,7 +815,7 @@ footer{background:#071544;color:#b8c3ea;padding:70px 6% 24px}
 
 /* ===== FIXED HEADER (always stays on top, never moves) ===== */
 .nav{position:fixed;top:0;left:0;right:0;width:100%;z-index:100}
-body{padding-top:88px}               /* space so content doesn't hide under the header */
+body{padding-top:70px}               /* space so content doesn't hide under the header */
 html,body{overscroll-behavior-x:none} /* stops sideways drag/bounce */
 @media(max-width:1000px){body{padding-top:72px}}
 /* ADD at the END of style.css (old .exam-chips CSS can stay or be deleted) */
@@ -1057,3 +1057,29 @@ html,body{overscroll-behavior-x:none} /* stops sideways drag/bounce */
 }
 .hl.in .l2::after{width:70%}
 @media(prefers-reduced-motion:reduce){.hl .l2 em{animation:none}}
+/* ===== SPACING FIX : tighter, even gaps between all sections ===== */
+body section{padding:72px 6%}
+body .sec-head{margin-bottom:40px}
+body .method{margin-bottom:44px}
+
+/* gap between two sections = bottom of one + top of next, so trim the joins */
+body section.exams{padding-bottom:56px}
+body section.careers{padding-top:56px}
+body section.courses{padding-bottom:56px}
+body section.faq{padding-bottom:56px}
+body section.contact{padding-top:72px}
+
+/* sections with their own spacing */
+body .pillars{padding:28px 4%}
+body section.hero{padding:0}
+
+@media(max-width:1000px){
+  body section{padding:60px 6%}
+  body section.hero{padding:50px 6% 0}
+  body .pillars{padding:24px 5%}
+}
+@media(max-width:600px){
+  body section{padding:52px 5%}
+  body .sec-head{margin-bottom:32px}
+  body section.hero{padding:40px 6% 0}
+}
