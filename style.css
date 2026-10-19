@@ -1083,3 +1083,291 @@ body section.hero{padding:0}
   body .sec-head{margin-bottom:32px}
   body section.hero{padding:40px 6% 0}
 }
+
+
+/* =====================================================================
+   LEARNING ECOSYSTEM SECTION  (One Enrollment. An Entire Learning Ecosystem.)
+   ===================================================================== */
+.eco{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(circle at 6% 10%,rgba(227,171,60,.18),transparent 38%),
+    radial-gradient(circle at 96% 55%,rgba(143,29,51,.10),transparent 40%),
+    radial-gradient(circle at 20% 100%,rgba(42,71,168,.08),transparent 40%),
+    linear-gradient(180deg,#fff,var(--cream));
+}
+.eco::before{ /* faint dotted texture */
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:radial-gradient(rgba(11,31,92,.07) 1.2px,transparent 1.2px);background-size:28px 28px;
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 20%,#000 80%,transparent);
+  mask-image:linear-gradient(180deg,transparent,#000 20%,#000 80%,transparent);
+}
+.eco-wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto}
+
+/* ---------- tagline ---------- */
+.eco-tag{
+  display:flex;align-items:center;justify-content:center;gap:16px;margin:0 auto 26px;text-align:center;
+  font-family:'Playfair Display',serif;font-style:italic;font-weight:600;font-size:clamp(1.05rem,2vw,1.5rem);color:#7a1426;
+}
+.eco-tag::before,.eco-tag::after{content:"";flex:0 1 120px;height:2px;border-radius:2px}
+.eco-tag::before{background:linear-gradient(270deg,var(--gold),transparent)}
+.eco-tag::after{background:linear-gradient(90deg,var(--gold),transparent)}
+
+/* ---------- banner ---------- */
+.eco-banner{
+  position:relative;overflow:hidden;text-align:center;color:#fff;
+  padding:60px 34px 52px;margin-bottom:64px;border-radius:32px;
+  background:
+    radial-gradient(rgba(255,255,255,.14) 1.4px,transparent 1.5px) 0 0/30px 30px,
+    radial-gradient(circle at 10% 0%,rgba(244,207,122,.3),transparent 45%),
+    radial-gradient(circle at 100% 100%,rgba(255,255,255,.1),transparent 50%),
+    linear-gradient(135deg,#46091a,#8f1d33 55%,#5a0f1e);
+  box-shadow:0 36px 76px rgba(90,15,30,.36);
+  animation:ecoDots 40s linear infinite;
+}
+.eco-banner::before{
+  content:"";position:absolute;right:-100px;top:-120px;width:340px;height:340px;border-radius:50%;
+  border:2px dashed rgba(244,207,122,.4);animation:ecoSpin 36s linear infinite;pointer-events:none;
+}
+.eco-banner::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:6px;
+  background:linear-gradient(90deg,transparent,#f4cf7a,#e3ab3c,#f4cf7a,transparent);
+}
+.eco-banner h2{
+  position:relative;z-index:2;margin:0 0 16px;color:#fff;
+  font-size:clamp(2rem,5vw,3.9rem);line-height:1.05;letter-spacing:.01em;text-shadow:0 4px 18px rgba(0,0,0,.3);
+}
+.eco-banner h2 em{
+  display:block;margin-top:4px;font-style:normal;color:transparent;
+  background:linear-gradient(90deg,#f9d65c,#fff3bf,#f9d65c,#e3ab3c);background-size:220% 100%;
+  -webkit-background-clip:text;background-clip:text;animation:ecoSheen 5s linear infinite;
+}
+.eco-banner h2 em::after{
+  content:"";display:block;width:min(260px,50%);height:4px;border-radius:4px;margin:14px auto 0;
+  background:linear-gradient(90deg,transparent,#f4cf7a,transparent);
+}
+.eco-banner p{position:relative;z-index:2;margin:0 auto;max-width:700px;font-size:clamp(.95rem,1.5vw,1.14rem);color:#f8ecf0}
+
+/* ---------- cards ---------- */
+.eco-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:eco}
+.eco-card{
+  --ac:#9a2b3c;--soft:#fde4e8;--mx:50%;--my:-30%;
+  counter-increment:eco;
+  position:relative;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;align-items:center;text-align:center;
+  padding:0 26px 38px;border-radius:30px;
+  background:
+    radial-gradient(300px circle at var(--mx) var(--my),rgba(255,255,255,.95),transparent 62%),
+    linear-gradient(180deg,var(--soft),#fff 130%);
+  border:1px solid rgba(11,31,92,.07);border-top:7px solid var(--ac);
+  box-shadow:0 18px 40px rgba(11,31,92,.09);
+  transition:translate .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s;
+}
+.eco-card.pink {--ac:#9a2b3c;--soft:#fde1e6}
+.eco-card.green{--ac:#14634f;--soft:#d9f2e0}
+.eco-card.lav  {--ac:#2a3a9f;--soft:#e3e0fb}
+.eco-card.cream{--ac:#a87012;--soft:#fcebbd}
+
+.eco-card:hover{translate:0 -12px;box-shadow:0 34px 60px rgba(11,31,92,.2),0 0 0 2px color-mix(in srgb,var(--ac) 45%,transparent)}
+
+/* number */
+.eco-card::before{
+  content:counter(eco,decimal-leading-zero);position:absolute;z-index:-1;right:20px;top:16px;
+  font-family:var(--head);font-weight:800;font-size:3.6rem;line-height:1;
+  color:transparent;-webkit-text-stroke:1.4px var(--ac);opacity:.3;transition:opacity .45s,translate .6s;
+}
+.eco-card:hover::before{opacity:.85;translate:-8px 0}
+/* glow blob + shine sweep */
+.eco-card::after{
+  content:"";position:absolute;z-index:-1;left:-70px;bottom:-80px;width:230px;height:230px;border-radius:50%;
+  background:radial-gradient(circle,var(--ac),transparent 68%);opacity:.12;transition:.6s;
+}
+.eco-card:hover::after{opacity:.24;transform:scale(1.5)}
+
+/* icon */
+.eco-ic{
+  position:relative;display:grid;place-items:center;width:112px;height:112px;margin:36px auto 22px;border-radius:50%;
+  background:#fff;border:2px solid color-mix(in srgb,var(--ac) 30%,#fff);
+  box-shadow:0 16px 34px rgba(11,31,92,.14),inset 0 0 0 7px color-mix(in srgb,var(--soft) 75%,#fff);
+  transition:background .45s,border-color .45s,transform .6s cubic-bezier(.2,.9,.3,1.4);
+}
+.eco-ic::before{
+  content:"";position:absolute;inset:-11px;border-radius:50%;border:1.5px dashed var(--ac);opacity:.5;
+  animation:ecoSpin 22s linear infinite;
+}
+.eco-ic::after{ /* orbiting dot */
+  content:"";position:absolute;left:50%;top:-14px;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;
+  background:var(--ac);box-shadow:0 0 12px var(--ac);transform-origin:4.5px 70px;animation:ecoSpin 9s linear infinite;
+}
+.eco-ic svg{width:60px;height:60px;fill:none;stroke:var(--ac);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:stroke .45s;animation:ecoFloat 4.5s ease-in-out infinite}
+.eco-card:hover .eco-ic{background:var(--ac);border-color:var(--ac);transform:scale(1.1) rotate(-6deg)}
+.eco-card:hover .eco-ic svg{stroke:#fff}
+
+/* text */
+.eco-card h3{
+  position:relative;margin:0 0 20px;padding-bottom:16px;
+  font-size:clamp(1.3rem,1.9vw,1.65rem);font-weight:700;line-height:1.1;text-transform:uppercase;letter-spacing:.02em;color:var(--ac);
+}
+.eco-card h3::after{
+  content:"";position:absolute;left:50%;bottom:0;width:44px;height:3px;border-radius:3px;translate:-50% 0;background:var(--ac);transition:width .45s;
+}
+.eco-card:hover h3::after{width:92px}
+
+.eco-card ul{display:grid;gap:12px;margin:0;padding:0;width:100%;max-width:250px;text-align:left}
+.eco-card li{position:relative;padding:0 0 0 36px;font-size:1.05rem;font-weight:500;line-height:1.35;color:#1d2a55}
+.eco-card li::before{
+  content:"\2713";position:absolute;left:0;top:-1px;display:grid;place-items:center;
+  width:24px;height:24px;border-radius:50%;background:var(--ac);color:#fff;font-size:.74rem;font-weight:700;
+  box-shadow:0 4px 10px color-mix(in srgb,var(--ac) 40%,transparent);
+  transition:transform .4s cubic-bezier(.2,.9,.3,1.4);
+}
+.eco-card li:hover::before{transform:scale(1.22) rotate(-10deg)}
+.eco-card p{margin:0 auto;max-width:250px;font-size:1.07rem;font-weight:500;line-height:1.65;color:#1d2a55}
+
+/* ---------- CTA panel ---------- */
+.eco-cta{
+  position:relative;overflow:hidden;margin-top:56px;padding:40px 44px;border-radius:30px;color:#fff;
+  display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;
+  background:
+    radial-gradient(circle at 0% 0%,rgba(227,171,60,.3),transparent 45%),
+    radial-gradient(circle at 100% 100%,rgba(42,71,168,.6),transparent 52%),
+    var(--navy-grad);
+  box-shadow:0 30px 70px rgba(11,31,92,.32);
+}
+.eco-cta::before{
+  content:"";position:absolute;left:-90px;bottom:-130px;width:300px;height:300px;border-radius:50%;
+  border:2px dashed rgba(244,207,122,.32);animation:ecoSpin 30s linear infinite;pointer-events:none;
+}
+.eco-cta-text{position:relative;z-index:2;flex:1 1 420px}
+.eco-cta-text h3{margin:0 0 8px;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.1;text-transform:uppercase;color:#fff}
+.eco-cta-text h3 em{font-style:normal;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.eco-cta-text p{margin:0 0 18px;color:#c9d3f5;font-size:1.02rem}
+.eco-cta-chips{display:flex;flex-wrap:wrap;gap:9px}
+.eco-cta-chips span{padding:7px 15px;border-radius:50px;font-size:.8rem;font-weight:600;color:#f4cf7a;border:1px solid rgba(244,207,122,.5);background:rgba(255,255,255,.07);transition:.35s}
+.eco-cta-chips span:hover{background:#f4cf7a;color:var(--navy);transform:translateY(-3px)}
+.eco-cta-btn{position:relative;z-index:2;padding:18px 40px;font-size:1.1rem;box-shadow:0 16px 34px rgba(0,0,0,.35)}
+.eco-cta-btn::before{
+  content:"";position:absolute;top:0;left:-80%;width:45%;height:100%;background:rgba(255,255,255,.4);transform:skewX(-25deg);animation:shine 3.2s infinite;
+}
+
+/* ---------- motion ---------- */
+@keyframes ecoSpin{to{transform:rotate(360deg)}}
+@keyframes ecoSheen{to{background-position:-220% 0}}
+@keyframes ecoFloat{50%{transform:translateY(-5px)}}
+@keyframes ecoDots{to{background-position:60px 30px,0 0,0 0,0 0}}
+
+/* ---------- responsive ---------- */
+@media(max-width:1000px){
+  .eco-grid{grid-template-columns:1fr 1fr;gap:22px}
+  .eco-banner{padding:46px 24px 40px;margin-bottom:46px}
+  .eco-cta{padding:34px 28px}
+}
+@media(max-width:600px){
+  .eco-grid{grid-template-columns:1fr;gap:20px}
+  .eco-banner{padding:38px 18px 34px;border-radius:24px}
+  .eco-tag::before,.eco-tag::after{flex-basis:28px}
+  .eco-ic{width:96px;height:96px;margin-top:30px}
+  .eco-ic::after{transform-origin:4.5px 62px}
+  .eco-ic svg{width:52px;height:52px}
+  .eco-card::before{font-size:2.8rem}
+  .eco-cta{padding:30px 20px;border-radius:24px}
+  .eco-cta-btn{width:100%;justify-content:center}
+}
+@media(hover:none){.eco-card:hover{translate:none}}
+@media(prefers-reduced-motion:reduce){
+  .eco-banner,.eco-banner::before,.eco-banner h2 em,.eco-ic::before,.eco-ic::after,.eco-ic svg,.eco-cta::before,.eco-cta-btn::before{animation:none!important}
+  .eco-card,.eco-card *{transition:none!important}
+}
+
+
+/* =====================================================================
+   FOUNDER SECTION UPGRADE  (scoped with .kab so it overrides about.css)
+   ===================================================================== */
+/* ================= PHOTO FRAME ================= */.kab .kab-frame::before{ /* soft dotted texture */
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.16;
+  background-image:radial-gradient(#fff 1.4px,transparent 1.5px);background-size:26px 26px;
+  -webkit-mask-image:radial-gradient(circle at 50% 55%,#000 20%,transparent 75%);
+  mask-image:radial-gradient(circle at 50% 55%,#000 20%,transparent 75%);
+}
+.kab .kab-frame::after{ /* dashed ring around the monogram */
+  content:"";position:absolute;left:50%;top:50%;z-index:1;width:68%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;
+  border:2px dashed rgba(244,207,122,.5);animation:kabSpin 40s linear infinite;pointer-events:none;
+}
+.kab .kab-ini{text-shadow:0 10px 30px rgba(0,0,0,.35)}
+.kab .kab-photo::before{width:150px;height:150px;border-color:rgba(194,138,29,.6)}
+.kab .kab-badge{padding:13px 28px;font-size:.95rem;box-shadow:0 18px 38px rgba(11,31,92,.22)}
+/* ================= BIO ================= */.kab .kab-bio .kab-k{display:flex;align-items:center;gap:14px}
+.kab .kab-bio .kab-k::after{content:"";flex:0 1 90px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--gold),transparent)}
+.kab .kab-bio h3{position:relative;padding-bottom:16px;margin-bottom:14px}
+.kab .kab-bio h3::after{content:"";position:absolute;left:0;bottom:0;width:86px;height:4px;border-radius:4px;background:var(--gold-grad)}
+/* credential pill */.kab .kab-cred{
+  display:inline-flex;align-items:center;gap:10px;margin-bottom:14px;padding:8px 20px;border-radius:50px;
+  background:var(--navy-grad);color:#f4cf7a;font-size:1.02rem;letter-spacing:.12em;
+  box-shadow:0 12px 26px rgba(11,31,92,.25);
+}
+.kab .kab-cred::before{content:"";width:9px;height:9px;border-radius:50%;background:#f4cf7a;box-shadow:0 0 12px #f4cf7a}
+.kab .kab-role{font-size:1.04rem;padding-bottom:20px;margin-bottom:20px}
+/* role chips */.kab .kab-roles{gap:10px;margin-bottom:26px}
+.kab .kab-roles span{
+  display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border:1px solid rgba(194,138,29,.4);
+  font-size:.82rem;transition:transform .35s cubic-bezier(.2,.8,.2,1),background .35s,color .35s,box-shadow .35s;
+}
+.kab .kab-roles span::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.kab .kab-roles span:hover{transform:translateY(-4px);background:var(--navy-grad);color:#f4cf7a;border-color:transparent;box-shadow:0 12px 24px rgba(11,31,92,.25)}
+.kab .kab-roles span:hover::before{background:#f4cf7a}
+/* belief quote card */.kab .kab-belief{
+  position:relative;overflow:hidden;margin-top:4px;padding:24px 28px 24px 34px;border-radius:20px;border-left:0;
+  background:linear-gradient(135deg,var(--cream),#fff);border:1px solid rgba(194,138,29,.35);
+  box-shadow:0 16px 36px rgba(11,31,92,.08);font-size:1.1rem;
+}
+.kab .kab-belief::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--gold-grad)}
+.kab .kab-belief::after{
+  content:"\201C";position:absolute;right:20px;top:-14px;font-family:var(--head);font-weight:800;font-size:7rem;line-height:1;
+  color:rgba(194,138,29,.2);pointer-events:none;
+}
+/* ================= RESPONSIVE ================= */@media(max-width:1000px){.kab .kab-bio .kab-k::after{display:none}
+
+}
+@media(max-width:600px){.kab .kab-belief{padding:22px 20px 22px 26px;font-size:1.02rem}
+
+}
+@media(hover:none){.kab .kab-roles span:hover{transform:none}}
+@media(prefers-reduced-motion:reduce){.kab .kab-frame::after{animation:none}
+.kab .kab-roles span{transition:none}
+}
+/* ===== LEARNING JOURNEY : arch steps ===== */
+.jr{
+  position:relative;overflow:hidden;max-width:1100px;height:470px;margin:0 auto;
+  display:flex;align-items:flex-end;gap:18px;padding:0 40px;
+  border-radius:36px;background:radial-gradient(circle at 12% 0%,rgba(227,171,60,.25),transparent 45%),var(--navy-grad);
+  box-shadow:0 30px 70px rgba(11,31,92,.3);
+}
+.jr::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;background:var(--gold-grad)}
+.jr-arch{
+  flex:1;height:var(--h);padding:34px 18px 30px;text-align:center;color:#fff;cursor:pointer;outline:0;
+  display:flex;flex-direction:column;align-items:center;
+  border-radius:150px 150px 0 0;border:1px solid rgba(244,207,122,.22);border-bottom:0;
+  background:rgba(255,255,255,.07);
+  transition:background .5s,color .5s,transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s;
+}
+.jr-ic{
+  display:grid;place-items:center;width:74px;height:74px;margin-bottom:18px;border-radius:50%;
+  border:1.5px dashed rgba(244,207,122,.8);transition:.5s;
+}
+.jr-ic svg{width:34px;height:34px;fill:none;stroke:#f4cf7a;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.jr-no{font-family:var(--head);font-weight:700;font-size:.95rem;letter-spacing:.4em;text-indent:.4em;color:#f4cf7a;margin-bottom:6px}
+.jr-arch h4{font-size:1.7rem;font-weight:700;letter-spacing:.12em;color:#f4cf7a;margin-bottom:10px;transition:color .5s}
+.jr-arch p{font-size:.95rem;line-height:1.5;color:#e4e9ff;max-width:200px;transition:color .5s}
+
+.jr-arch.active{background:var(--cream);color:var(--navy);transform:translateY(-8px);box-shadow:0 -10px 40px rgba(0,0,0,.25)}
+.jr-arch.active .jr-ic{background:var(--navy);border-style:solid;border-color:var(--navy)}
+.jr-arch.active .jr-no{color:var(--gold)}
+.jr-arch.active h4{color:var(--navy)}
+.jr-arch.active p{color:var(--muted)}
+.jr-arch:focus-visible{outline:3px solid #f4cf7a;outline-offset:-3px}
+
+@media(max-width:800px){
+  .jr{height:auto;flex-direction:column;align-items:stretch;gap:14px;padding:26px 20px 32px}
+  .jr-arch{height:auto;border-radius:28px;border-bottom:1px solid rgba(244,207,122,.22);padding:24px 18px}
+  .jr-arch p{max-width:none}
+  .jr-arch.active{transform:none}
+}

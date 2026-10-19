@@ -25,6 +25,16 @@ body{padding-top:70px!important}
   .nav .logo img,.nav.scrolled .logo img{height:42px!important}
   body{padding-top:62px!important}
 }
+
+/* AUDIENCE FILTER PILLS */
+.aud-tags .aud-tag{font-family:inherit;cursor:pointer;-webkit-appearance:none;appearance:none}
+.aud-tags .aud-tag:hover{transform:translateY(-3px)}
+.aud-tags .aud-tag.active{background:var(--navy-grad);color:#f4cf7a;border-color:transparent;box-shadow:0 12px 26px rgba(11,31,92,.28)}
+.aud-tags .aud-tag.active svg{stroke:#f4cf7a}
+.aud-tags .aud-tag:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.aud-note{min-height:1.4em;margin:16px 0 0;font-size:.9rem;font-weight:600;color:var(--muted)}
+.cw-node.hide{visibility:hidden!important;opacity:0!important;pointer-events:none!important;transition:opacity .3s}
+.cw-node.match .cw-dot{border-color:#f4cf7a;box-shadow:0 0 0 4px rgba(244,207,122,.28)}
 </style>
 </head>
 <body>
@@ -96,17 +106,20 @@ body{padding-top:70px!important}
     <p class="reveal d2">Build strong foundations, connect concepts, and prepare confidently through structured learning, revision, and practice.</p>
   </div>
 
+  <!-- AUDIENCE FILTER (click a pill -> course dial filters) -->
   <div class="aud reveal d2">
     <h3 class="aud-title"><span></span> For Every Stage of Your Siddha Journey <span></span></h3>
-    <div class="aud-tags">
-      <span class="aud-tag"><svg viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/></svg>BSMS Students</span>
-      <span class="aud-tag"><svg viewBox="0 0 24 24"><path d="M6 3h8l5 5v13H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/></svg>MRB Aspirants</span>
-      <span class="aud-tag"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6"/><path d="M16 14.5c3 0 5 2 5 5"/></svg>AIAPGET Aspirants</span>
-      <span class="aud-tag"><svg viewBox="0 0 24 24"><path d="M6 3v6a4 4 0 008 0V3"/><path d="M10 13v3a4 4 0 008 0v-2"/><circle cx="18" cy="12" r="2"/></svg>NExT Aspirants</span>
-      <span class="aud-tag"><svg viewBox="0 0 24 24"><path d="M12 6c-2-1.5-5-2-9-2v14c4 0 7 .5 9 2 2-1.5 5-2 9-2V4c-4 0-7 .5-9 2z"/><path d="M12 6v14"/></svg>PhD Entrance Aspirants</span>
-      <span class="aud-tag"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V4h6v3M3 13h18"/></svg>Doctors Restarting After a Career Gap</span>
-      <span class="aud-tag"><svg viewBox="0 0 24 24"><path d="M12 21c-5-3-8-6-8-10a5 5 0 018-4 5 5 0 018 4c0 4-3 7-8 10z"/></svg>Clinical Practice&ndash;Oriented Learners</span>
+    <div class="aud-tags" id="audFilter" role="group" aria-label="Filter courses by audience">
+      <button type="button" class="aud-tag aud-all active" data-courses="A,B,C,D,E">All Courses</button>
+      <button type="button" class="aud-tag" data-courses="A,B,C"><svg viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/></svg>BSMS Students</button>
+      <button type="button" class="aud-tag" data-courses="A,B,C,D"><svg viewBox="0 0 24 24"><path d="M6 3h8l5 5v13H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/></svg>MRB Aspirants</button>
+      <button type="button" class="aud-tag" data-courses="A,C,D"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6"/><path d="M16 14.5c3 0 5 2 5 5"/></svg>AIAPGET Aspirants</button>
+      <button type="button" class="aud-tag" data-courses="A,D,E"><svg viewBox="0 0 24 24"><path d="M6 3v6a4 4 0 008 0V3"/><path d="M10 13v3a4 4 0 008 0v-2"/><circle cx="18" cy="12" r="2"/></svg>NExT Aspirants</button>
+      <button type="button" class="aud-tag" data-courses="A,D"><svg viewBox="0 0 24 24"><path d="M12 6c-2-1.5-5-2-9-2v14c4 0 7 .5 9 2 2-1.5 5-2 9-2V4c-4 0-7 .5-9 2z"/><path d="M12 6v14"/></svg>PhD Entrance Aspirants</button>
+      <button type="button" class="aud-tag" data-courses="A,B,C"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V4h6v3M3 13h18"/></svg>Doctors Restarting After a Career Gap</button>
+      <button type="button" class="aud-tag" data-courses="C,E"><svg viewBox="0 0 24 24"><path d="M12 21c-5-3-8-6-8-10a5 5 0 018-4 5 5 0 018 4c0 4-3 7-8 10z"/></svg>Clinical Practice&ndash;Oriented Learners</button>
     </div>
+    <p class="aud-note" id="audNote" aria-live="polite"></p>
   </div>
 
   <!-- icon sprite (hidden) -->
@@ -244,6 +257,91 @@ body{padding-top:70px!important}
   </div>
 
   <p class="crs-foot reveal">UNDERSTAND &bull; REMEMBER &bull; APPLY &bull; SCORE</p>
+</section>
+
+<!-- LEARNING ECOSYSTEM (what you get with one enrollment) -->
+<section class="eco" id="ecosystem">
+  <div class="eco-wrap">
+    <p class="eco-tag reveal">Your Structured Learning Journey Starts Here.</p>
+
+    <div class="eco-banner reveal d1">
+      <h2>One Enrollment.<em>An Entire Learning Ecosystem.</em></h2>
+      <p>Not simply a class &mdash; a complete system to help you understand, practice and score.</p>
+    </div>
+
+    <div class="eco-grid">
+
+      <article class="eco-card pink reveal">
+        <span class="eco-ic"><svg viewBox="0 0 64 64"><rect x="8" y="14" width="40" height="28" rx="3"/><path d="M4 48h48"/><circle cx="28" cy="25" r="5"/><path d="M18 40c0-6 4-9 10-9s10 3 10 9"/><path d="M42 6h16a2 2 0 012 2v10a2 2 0 01-2 2h-9l-5 5v-5h-2a2 2 0 01-2-2V8a2 2 0 012-2z"/><path d="M47 11h8M47 15h5"/></svg></span>
+        <h3>Live Classes</h3>
+        <ul>
+          <li>Structured</li>
+          <li>Exam-oriented</li>
+          <li>Concept-based</li>
+        </ul>
+      </article>
+
+      <article class="eco-card green reveal d1">
+        <span class="eco-ic"><svg viewBox="0 0 64 64"><rect x="6" y="10" width="52" height="36" rx="4"/><path d="M26 20v16l14-8z"/><path d="M22 54h20M32 46v8"/></svg></span>
+        <h3>Recorded Class Access</h3>
+        <p>Revisit your live sessions with limited-time access</p>
+      </article>
+
+      <article class="eco-card lav reveal d2">
+        <span class="eco-ic"><svg viewBox="0 0 64 64"><rect x="10" y="8" width="34" height="46" rx="4"/><path d="M20 6h14v6H20z"/><path d="M17 24h20M17 32h12M17 40h10"/><circle cx="46" cy="44" r="12"/><path d="M46 37v8l5 3"/></svg></span>
+        <h3>Computer-Based Tests</h3>
+        <ul>
+          <li>Practice MCQs</li>
+          <li>Online exams</li>
+          <li>Instant evaluation</li>
+        </ul>
+      </article>
+
+      <article class="eco-card cream reveal">
+        <span class="eco-ic"><svg viewBox="0 0 64 64"><rect x="10" y="8" width="36" height="46" rx="4"/><path d="M18 20h20M18 28h20M18 36h12"/><path d="M40 52l4-12 14-14 8 8-14 14z" transform="translate(-6 -2) scale(.9)"/><path d="M42 40l8 8"/></svg></span>
+        <h3>Digital Study Materials</h3>
+        <ul>
+          <li>Structured notes</li>
+          <li>Revision resources</li>
+          <li>Exam-focused content</li>
+        </ul>
+      </article>
+
+      <article class="eco-card lav reveal d1">
+        <span class="eco-ic"><svg viewBox="0 0 64 64"><path d="M10 54h44"/><rect x="14" y="38" width="8" height="16" rx="1"/><rect x="26" y="28" width="8" height="26" rx="1"/><rect x="38" y="34" width="8" height="20" rx="1"/><rect x="48" y="12" width="8" height="42" rx="1"/></svg></span>
+        <h3>Performance Tracking</h3>
+        <ul>
+          <li>Test history</li>
+          <li>Scores</li>
+          <li>Answer review</li>
+          <li>Progress insights</li>
+        </ul>
+      </article>
+
+      <article class="eco-card green reveal d2">
+        <span class="eco-ic"><svg viewBox="0 0 64 64"><rect x="14" y="14" width="36" height="36" rx="5"/><path d="M22 14V6M32 14V6M42 14V6M22 58v-8M32 58v-8M42 58v-8M14 22H6M14 32H6M14 42H6M58 22h-8M58 32h-8M58 42h-8"/><path d="M23 42l6-16 6 16M25 37h8M42 26v16"/><path d="M54 4l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></svg></span>
+        <h3>AI-Enhanced Learning</h3>
+        <ul>
+          <li>Smart practice</li>
+          <li>AI-generated MCQs</li>
+          <li>Explanations</li>
+          <li>Learning support</li>
+        </ul>
+      </article>
+
+    </div>
+
+    <div class="eco-cta reveal">
+      <div class="eco-cta-text">
+        <h3>Everything above comes with <em>one enrollment.</em></h3>
+        <p>A complete system to help you understand, practise and score.</p>
+        <div class="eco-cta-chips">
+          <span>Live Classes</span><span>Recordings</span><span>CBT Tests</span><span>Study Materials</span><span>Tracking</span><span>AI Support</span>
+        </div>
+      </div>
+      <a href="enroll.html" class="btn gold eco-cta-btn">Enroll Now <i>&rarr;</i></a>
+    </div>
+  </div>
 </section>
 
 <!-- EXAMS / LEARNING APPROACH -->
@@ -437,33 +535,41 @@ body{padding-top:70px!important}
       </ol>
     </div>
 
-    <!-- ========== 5. LEARNING PHILOSOPHY (staircase of arches) ========== -->
+    <!-- ========== 5. LEARNING JOURNEY (arch steps) ========== -->
     <div class="kab-blk">
-      <div class="kab-phil" id="kabPhil" data-go>
-        <div class="kab-head">
-          <p class="kab-k light">LEARNING PHILOSOPHY</p>
-          <h3 class="kab-h">The K-MED <em>Learning Philosophy</em></h3>
-        </div>
+      <div class="kab-head reveal">
+        <p class="kab-k">HOW IT WORKS</p>
+        <h3 class="kab-h">Your <em>Learning Journey</em></h3>
+      </div>
 
-        <ol class="kab-stairs">
-          <li class="kab-st on" style="--i:0" tabindex="0">
-            <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 6c-2-1.5-5-2-9-2v14c4 0 7 .5 9 2 2-1.5 5-2 9-2V4c-4 0-7 .5-9 2z"/><path d="M12 6v14"/></svg></span>
-            <span class="no">01</span><h4>UNDERSTAND</h4><p>Build a strong conceptual foundation.</p>
-          </li>
-          <li class="kab-st" style="--i:1" tabindex="0">
-            <span class="ic"><svg viewBox="0 0 24 24"><path d="M9 4a3 3 0 00-3 3 3 3 0 00-2 5 3 3 0 002 4 3 3 0 005 1V4a3 3 0 00-2 0z"/><path d="M15 4a3 3 0 013 3 3 3 0 012 5 3 3 0 01-2 4 3 3 0 01-5 1V4a3 3 0 012 0z"/></svg></span>
-            <span class="no">02</span><h4>REMEMBER</h4><p>Retain with connections, visuals, and revision.</p>
-          </li>
-          <li class="kab-st" style="--i:2" tabindex="0">
-            <span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg></span>
-            <span class="no">03</span><h4>APPLY</h4><p>Use knowledge in clinical scenarios and MCQs.</p>
-          </li>
-          <li class="kab-st" style="--i:3" tabindex="0">
-            <span class="ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="13" r="8"/><circle cx="11" cy="13" r="4.5"/><circle cx="11" cy="13" r="1"/><path d="M12 12l8-8M17 4h3v3"/></svg></span>
-            <span class="no">04</span><h4>SCORE</h4><p>Translate preparation into confident performance.</p>
-          </li>
-        </ol>
-        <div class="kab-rail" aria-hidden="true"><span></span></div>
+      <div class="jr reveal d1" id="jr">
+        <article class="jr-arch active" style="--h:250px" tabindex="0">
+          <span class="jr-ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6"/><path d="M19 8v6M16 11h6"/></svg></span>
+          <span class="jr-no">01</span>
+          <h4>ENROLL</h4>
+          <p>Choose your course and join in minutes.</p>
+        </article>
+
+        <article class="jr-arch" style="--h:310px" tabindex="0">
+          <span class="jr-ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M10 9v4l4-2z"/><path d="M8 21h8M12 17v4"/></svg></span>
+          <span class="jr-no">02</span>
+          <h4>LEARN</h4>
+          <p>Attend live classes and revisit the recordings.</p>
+        </article>
+
+        <article class="jr-arch" style="--h:370px" tabindex="0">
+          <span class="jr-ic"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 3h6v3H9z"/><path d="M9 13l2 2 4-4"/></svg></span>
+          <span class="jr-no">03</span>
+          <h4>PRACTISE</h4>
+          <p>Take CBT tests, MCQs and PYQs every week.</p>
+        </article>
+
+        <article class="jr-arch" style="--h:430px" tabindex="0">
+          <span class="jr-ic"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span>
+          <span class="jr-no">04</span>
+          <h4>IMPROVE</h4>
+          <p>Review answers, track progress and grow stronger.</p>
+        </article>
       </div>
     </div>
 
@@ -477,16 +583,15 @@ body{padding-top:70px!important}
             <img src="images/founder.jpg" alt="Dr. R. Keerthika Prem, Founder of K-MED Academy" loading="lazy" onerror="this.remove()">
           </div>
           <figcaption class="kab-badge"><b>Founder</b> &amp; Medical Educator</figcaption>
-          <div class="kab-float"><b>Former Assistant Professor</b>National Institute of Siddha</div>
         </figure>
 
         <div class="kab-bio">
           <p class="kab-k reveal">MEET THE MIND BEHIND K-MED ACADEMY</p>
           <h3 class="reveal d1">Dr. R. Keerthika Prem</h3>
           <p class="kab-cred reveal d1">BSMS, MD (Siddha)</p>
-          <p class="kab-role reveal d2">Founder &amp; Medical Educator, K-MED Academy<br>Former Assistant Professor, National Institute of Siddha</p>
-          <div class="kab-roles reveal d2"><span>Academician</span><span>Siddha Physician</span><span>Medical Educator</span><span>Research Scholar</span></div>
-          <p class="reveal d3">Dr. R. Keerthika Prem is an academician, Siddha physician, medical educator, and research scholar passionate about simplifying medical learning.</p>
+          <p class="kab-role reveal d2">Founder &amp; Medical Educator, K-MED Academy</p>
+          <div class="kab-roles reveal d2"><span>Academician</span><span>Siddha Physician</span><span>Medical Educator</span></div>
+          <p class="reveal d3">Dr. R. Keerthika Prem (Former Assistant Professor, National Institute of Siddha) is an academician, Siddha physician, and medical educator passionate about simplifying medical learning.</p>
           <p class="reveal d3">With teaching experience at the National Institute of Siddha and a background in Pura Maruthuvam, she brings together conceptual teaching, clinical relevance, and exam-oriented learning.</p>
           <p class="kab-belief reveal d4">Her belief is simple: when learners truly understand a concept, remembering and applying it become easier.</p>
         </div>
@@ -587,5 +692,104 @@ body{padding-top:70px!important}
 <script src="api.js"></script>
 <script src="courses.js"></script>
 <script src="about.js"></script>
+
+<!-- Ecosystem cards: cursor spotlight -->
+<script>
+(function () {
+  if (window.matchMedia('(hover: none)').matches) return;
+  document.querySelectorAll('.eco-card').forEach(function (c) {
+    c.addEventListener('pointermove', function (e) {
+      var r = c.getBoundingClientRect();
+      c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+    c.addEventListener('pointerleave', function () {
+      c.style.removeProperty('--mx'); c.style.removeProperty('--my');
+    });
+  });
+})();
+</script>
+
+<!-- Audience filter: pill click -> only matching courses stay on the dial -->
+<script>
+(function () {
+  var box = document.getElementById('audFilter');
+  var note = document.getElementById('audNote');
+  var nodes = Array.from(document.querySelectorAll('#cwOrbit .cw-node'));
+  if (!box || !nodes.length) return;
+  var letters = ['A', 'B', 'C', 'D', 'E'];
+  var allowed = letters.slice();
+  var busy = false;
+
+  function isOk(i) { return allowed.indexOf(letters[i]) > -1; }
+
+  function jumpToAllowed() {
+    if (busy) return;
+    var cur = nodes.findIndex(function (n) { return n.classList.contains('active'); });
+    if (cur === -1 || isOk(cur)) return;
+    for (var k = 1; k <= nodes.length; k++) {
+      var j = (cur + k) % nodes.length;
+      if (isOk(j)) { busy = true; nodes[j].click(); setTimeout(function () { busy = false; }, 50); return; }
+    }
+  }
+
+  function apply(btn) {
+    box.querySelectorAll('.aud-tag').forEach(function (b) { b.classList.toggle('active', b === btn); });
+    var isAll = btn.classList.contains('aud-all');
+    allowed = isAll ? letters.slice() : btn.dataset.courses.split(',');
+
+    nodes.forEach(function (n, i) {
+      var ok = isOk(i);
+      n.classList.toggle('hide', !ok);
+      n.classList.toggle('match', !isAll && ok);
+      n.tabIndex = ok ? (n.classList.contains('active') ? 0 : -1) : -1;
+    });
+    note.textContent = isAll ? '' : 'Showing: Course ' + allowed.join(', ');
+    jumpToAllowed();
+  }
+
+  box.addEventListener('click', function (e) {
+    var btn = e.target.closest('.aud-tag');
+    if (btn) apply(btn);
+  });
+
+  // if autoplay (courses.js) lands on a hidden course, skip to the next allowed one
+  var mo = new MutationObserver(jumpToAllowed);
+  nodes.forEach(function (n) { mo.observe(n, { attributes: true, attributeFilter: ['class'] }); });
+})();
+</script>
+
+<!-- Learning Journey: arch steps (hover / click / auto-rotate) -->
+<script>
+(function () {
+  var box = document.getElementById('jr');
+  if (!box) return;
+  var arches = Array.prototype.slice.call(box.querySelectorAll('.jr-arch'));
+  var cur = 0, timer = null;
+
+  function show(i) {
+    cur = i;
+    arches.forEach(function (a, k) { a.classList.toggle('active', k === i); });
+  }
+  function stop() { clearInterval(timer); }
+  function play() {
+    stop();
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    timer = setInterval(function () { show((cur + 1) % arches.length); }, 3000);
+  }
+
+  arches.forEach(function (a, i) {
+    a.addEventListener('mouseenter', function () { show(i); });
+    a.addEventListener('click', function () { show(i); });
+    a.addEventListener('focus', function () { show(i); });
+  });
+  box.addEventListener('mouseenter', stop);
+  box.addEventListener('mouseleave', play);
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (e) { e[0].isIntersecting ? play() : stop(); }, { threshold: .3 }).observe(box);
+  } else { play(); }
+})();
+</script>
 </body>
 </html>
